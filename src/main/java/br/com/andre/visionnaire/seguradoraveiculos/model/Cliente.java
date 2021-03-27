@@ -1,6 +1,8 @@
 package br.com.andre.visionnaire.seguradoraveiculos.model;
 
+import br.com.andre.visionnaire.seguradoraveiculos.form.AtualizarClienteForm;
 import br.com.andre.visionnaire.seguradoraveiculos.form.ClienteForm;
+import br.com.andre.visionnaire.seguradoraveiculos.repository.ClienteRepository;
 import org.springframework.data.annotation.Id;
 
 public class Cliente {
@@ -25,7 +27,7 @@ public class Cliente {
         this.cpf = clienteForm.getCpf();
         this.nome = clienteForm.getNome();
         this.cidade = clienteForm.getCidade();
-        this.uf = Uf.valueOf(clienteForm.getUf());
+        this.uf = clienteForm.getUf();
     }
 
     public String getCpf() {
@@ -58,5 +60,21 @@ public class Cliente {
 
     public void setUf(Uf uf) {
         this.uf = uf;
+    }
+
+    public static Cliente atualizar(String cpf, AtualizarClienteForm clienteForm, ClienteRepository clienteRepository) {
+        Cliente cliente = clienteRepository.findClienteByCpf(cpf);
+
+        if (clienteForm.getNome() != null) {
+            cliente.setNome(clienteForm.getNome());
+        }
+        if (clienteForm.getCidade() != null) {
+            cliente.setCidade(clienteForm.getCidade());
+        }
+        if (clienteForm.getUf() != null) {
+            cliente.setUf(clienteForm.getUf());
+        }
+
+        return cliente;
     }
 }

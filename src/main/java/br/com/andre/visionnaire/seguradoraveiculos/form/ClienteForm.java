@@ -1,20 +1,20 @@
 package br.com.andre.visionnaire.seguradoraveiculos.form;
 
-import org.hibernate.validator.constraints.Length;
+import br.com.andre.visionnaire.seguradoraveiculos.model.Uf;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class ClienteForm {
 
-    @NotNull @NotEmpty
+    @NotNull(message = "{cpf.nulo}") @NotEmpty(message = "{cpf.vazio}")
     private String cpf;
-    @NotNull @NotEmpty
+    @NotNull(message = "{nome.nulo}") @NotEmpty(message = "{nome.vazio}")
     private String nome;
-    @NotNull @NotEmpty
+    @NotNull(message = "{cidade.nulo}") @NotEmpty(message = "{cidade.vazio}")
     private String cidade;
-    @NotNull @NotEmpty @Length(min = 2, max = 2)
-    private String uf;
+    @NotNull(message = "{uf.nulo}")
+    private Uf uf;
 
     public String getCpf() {
         return cpf;
@@ -28,7 +28,7 @@ public class ClienteForm {
         return cidade;
     }
 
-    public String getUf() {
+    public Uf getUf() {
         return uf;
     }
 }
