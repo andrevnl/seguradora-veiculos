@@ -1,6 +1,8 @@
 package br.com.andre.visionnaire.seguradoraveiculos.model;
 
 import br.com.andre.visionnaire.seguradoraveiculos.form.ApoliceForm;
+import br.com.andre.visionnaire.seguradoraveiculos.form.AtualizarApoliceForm;
+import br.com.andre.visionnaire.seguradoraveiculos.repository.ApoliceRepository;
 import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
@@ -10,8 +12,8 @@ public class Apolice {
 
     @Id
     private String numero;
-    private LocalDateTime dataInicio;
-    private LocalDateTime dataFim;
+    private LocalDateTime inicioVigencia;
+    private LocalDateTime fimVigencia;
     private String placaVeiculo;
     private BigDecimal valor;
 
@@ -19,8 +21,8 @@ public class Apolice {
     }
 
     public Apolice(ApoliceForm apoliceForm) {
-        this.dataInicio = apoliceForm.getDataInicio();
-        this.dataFim = apoliceForm.getDataFim();
+        this.inicioVigencia = apoliceForm.getInicioVigencia();
+        this.fimVigencia = apoliceForm.getFimVigencia();
         this.placaVeiculo = apoliceForm.getPlacaVeiculo();
         this.valor = apoliceForm.getValor();
     }
@@ -33,20 +35,20 @@ public class Apolice {
         this.numero = numero;
     }
 
-    public LocalDateTime getDataInicio() {
-        return dataInicio;
+    public LocalDateTime getInicioVigencia() {
+        return inicioVigencia;
     }
 
-    public void setDataInicio(LocalDateTime dataInicio) {
-        this.dataInicio = dataInicio;
+    public void setInicioVigencia(LocalDateTime inicioVigencia) {
+        this.inicioVigencia = inicioVigencia;
     }
 
-    public LocalDateTime getDataFim() {
-        return dataFim;
+    public LocalDateTime getFimVigencia() {
+        return fimVigencia;
     }
 
-    public void setDataFim(LocalDateTime dataFim) {
-        this.dataFim = dataFim;
+    public void setFimVigencia(LocalDateTime fimVigencia) {
+        this.fimVigencia = fimVigencia;
     }
 
     public String getPlacaVeiculo() {
@@ -63,5 +65,13 @@ public class Apolice {
 
     public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+    public static Apolice atualizar(String numero, AtualizarApoliceForm apoliceForm, ApoliceRepository apoliceRepository) {
+        Apolice apolice = apoliceRepository.findApoliceByNumero(numero);
+        if (apoliceForm.getInicioVigencia() != null) { apolice.setInicioVigencia(apoliceForm.getInicioVigencia());  }
+        if (apoliceForm.getFimVigencia()    != null) { apolice.setFimVigencia(apoliceForm.getFimVigencia());        }
+        if (apoliceForm.getPlacaVeiculo()   != null) { apolice.setPlacaVeiculo(apoliceForm.getPlacaVeiculo());      }
+        if (apoliceForm.getValor()          != null) { apolice.setValor(apoliceForm.getValor());                    }
+        return apolice;
     }
 }

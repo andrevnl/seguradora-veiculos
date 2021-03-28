@@ -9,15 +9,15 @@ import java.time.LocalDateTime;
 public class ApoliceDto {
 
     private String numero;
-    private LocalDateTime dataInicio;
-    private LocalDateTime dataFim;
+    private LocalDateTime inicioVigencia;
+    private LocalDateTime fimVigencia;
     private String placaVeiculo;
     private BigDecimal valor;
 
     public ApoliceDto(Apolice apolice) {
         this.numero = apolice.getNumero();
-        this.dataInicio = apolice.getDataInicio();
-        this.dataFim = apolice.getDataFim();
+        this.inicioVigencia = apolice.getInicioVigencia();
+        this.fimVigencia = apolice.getFimVigencia();
         this.placaVeiculo = apolice.getPlacaVeiculo();
         this.valor = apolice.getValor();
     }
@@ -30,12 +30,12 @@ public class ApoliceDto {
         return numero;
     }
 
-    public LocalDateTime getDataInicio() {
-        return dataInicio;
+    public LocalDateTime getInicioVigencia() {
+        return inicioVigencia;
     }
 
-    public LocalDateTime getDataFim() {
-        return dataFim;
+    public LocalDateTime getFimVigencia() {
+        return fimVigencia;
     }
 
     public String getPlacaVeiculo() {
