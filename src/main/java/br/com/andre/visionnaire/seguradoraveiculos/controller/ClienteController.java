@@ -47,14 +47,21 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<?> cadastrarCliente(@RequestBody @Valid ClienteForm clienteForm) {
+
         if(isClienteExiste(clienteForm.getCpf())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Ja existe um cliente com esse CPF cadastrado.");
         }
 
-        Cliente novoCliente = new Cliente(clienteForm);
-        clienteRepository.save(novoCliente);
-        return ResponseEntity.status(HttpStatus.OK).body("Cliente cadastrado com sucesso");
+        if(clienteForm.isCpfValido()) {
+            Cliente novoCliente = new Cliente(clienteForm);
+            clienteRepository.save(novoCliente);
+            return ResponseEntity.status(HttpStatus.OK).body("Cliente cadastrado com sucesso");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("CPF Inválido.");
+        }
+
     }
 
     @PutMapping("/{cpf}")

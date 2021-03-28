@@ -1,9 +1,12 @@
 package br.com.andre.visionnaire.seguradoraveiculos.form;
 
 import br.com.andre.visionnaire.seguradoraveiculos.model.Uf;
+import br.com.caelum.stella.ValidationMessage;
+import br.com.caelum.stella.validation.CPFValidator;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 public class ClienteForm {
 
@@ -30,5 +33,11 @@ public class ClienteForm {
 
     public Uf getUf() {
         return uf;
+    }
+
+    public boolean isCpfValido(){
+        CPFValidator cpfValidator = new CPFValidator();
+        List<ValidationMessage> erros = cpfValidator.invalidMessagesFor(cpf);
+        if(erros.size() > 0) { return false; } else { return true; }
     }
 }
