@@ -1,5 +1,6 @@
 package br.com.andre.visionnaire.seguradoraveiculos.model;
 
+import br.com.andre.visionnaire.seguradoraveiculos.form.ApoliceForm;
 import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
@@ -8,18 +9,28 @@ import java.time.LocalDateTime;
 public class Apolice {
 
     @Id
-    private Long numApolice;
+    private String numero;
     private LocalDateTime dataInicio;
     private LocalDateTime dataFim;
     private String placaVeiculo;
     private BigDecimal valor;
 
-    public Long getNumApolice() {
-        return numApolice;
+    public Apolice() {
     }
 
-    public void setNumApolice(Long numApolice) {
-        this.numApolice = numApolice;
+    public Apolice(ApoliceForm apoliceForm) {
+        this.dataInicio = apoliceForm.getDataInicio();
+        this.dataFim = apoliceForm.getDataFim();
+        this.placaVeiculo = apoliceForm.getPlacaVeiculo();
+        this.valor = apoliceForm.getValor();
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public LocalDateTime getDataInicio() {

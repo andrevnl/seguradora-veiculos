@@ -16,13 +16,6 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String cpf, String nome, String cidade, Uf uf) {
-        this.cpf = cpf;
-        this.nome = nome;
-        this.cidade = cidade;
-        this.uf = uf;
-    }
-
     public Cliente(ClienteForm clienteForm) {
         this.cpf = clienteForm.getCpf();
         this.nome = clienteForm.getNome();
@@ -32,10 +25,6 @@ public class Cliente {
 
     public String getCpf() {
         return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public String getNome() {
