@@ -66,12 +66,21 @@ public class Apolice {
     public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
+
     public static Apolice atualizar(String numero, AtualizarApoliceForm apoliceForm, ApoliceRepository apoliceRepository) {
         Apolice apolice = apoliceRepository.findApoliceByNumero(numero);
-        if (apoliceForm.getInicioVigencia() != null) { apolice.setInicioVigencia(apoliceForm.getInicioVigencia());  }
-        if (apoliceForm.getFimVigencia()    != null) { apolice.setFimVigencia(apoliceForm.getFimVigencia());        }
-        if (apoliceForm.getPlacaVeiculo()   != null) { apolice.setPlacaVeiculo(apoliceForm.getPlacaVeiculo());      }
-        if (apoliceForm.getValor()          != null) { apolice.setValor(apoliceForm.getValor());                    }
+        if (apoliceForm.getInicioVigencia() != null) {
+            apolice.setInicioVigencia(apoliceForm.getInicioVigencia());
+        }
+        if (apoliceForm.getFimVigencia() != null) {
+            apolice.setFimVigencia(apoliceForm.getFimVigencia());
+        }
+        if (apoliceForm.getPlacaVeiculo() != null) {
+            apolice.setPlacaVeiculo(apoliceForm.getPlacaVeiculo());
+        }
+        if (apoliceForm.getValor() != null) {
+            apolice.setValor(apoliceForm.getValor());
+        }
         return apolice;
     }
 }

@@ -56,12 +56,11 @@ public class ClienteController {
         if(clienteForm.isCpfValido()) {
             Cliente novoCliente = new Cliente(clienteForm);
             clienteRepository.save(novoCliente);
-            return ResponseEntity.status(HttpStatus.OK).body("Cliente cadastrado com sucesso");
+            return ResponseEntity.ok(new ClienteDto(novoCliente));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("CPF Inválido.");
         }
-
     }
 
     @PutMapping("/{cpf}")
@@ -73,7 +72,7 @@ public class ClienteController {
 
         Cliente cliente = Cliente.atualizar(cpf, clienteForm, clienteRepository);
         clienteRepository.save(cliente);
-        return ResponseEntity.status(HttpStatus.OK).body("Cliente atualizado com sucesso.");
+        return ResponseEntity.ok(new ClienteDto(cliente));
     }
 
     @DeleteMapping("/{cpf}")

@@ -53,9 +53,15 @@ public class Cliente {
 
     public static Cliente atualizar(String cpf, AtualizarClienteForm clienteForm, ClienteRepository clienteRepository) {
         Cliente cliente = clienteRepository.findClienteByCpf(cpf);
-        if (clienteForm.getNome()   != null) { cliente.setNome(clienteForm.getNome());      }
-        if (clienteForm.getCidade() != null) { cliente.setCidade(clienteForm.getCidade());  }
-        if (clienteForm.getUf()     != null) { cliente.setUf(clienteForm.getUf());          }
+        if (clienteForm.getNome() != null) {
+            cliente.setNome(clienteForm.getNome());
+        }
+        if (clienteForm.getCidade() != null) {
+            cliente.setCidade(clienteForm.getCidade());
+        }
+        if (clienteForm.getUf() != null) {
+            cliente.setUf(clienteForm.getUf());
+        }
         return cliente;
     }
 }

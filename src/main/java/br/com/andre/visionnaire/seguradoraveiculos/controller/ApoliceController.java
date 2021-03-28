@@ -47,11 +47,11 @@ public class ApoliceController {
     }
 
     @PostMapping
-    public ResponseEntity<?> cadastrarApolice(@RequestBody @Valid ApoliceForm apoliceForm) {
+    public ResponseEntity<ApoliceDto> cadastrarApolice(@RequestBody @Valid ApoliceForm apoliceForm) {
         Apolice novaApolice = new Apolice(apoliceForm);
         novaApolice.setNumero(NumeroAleatorio.gerarNumeroAleatorioValidoParaApolice(apoliceRepository));
         apoliceRepository.save(novaApolice);
-        return ResponseEntity.status(HttpStatus.OK).body("Apolice cadastrada com sucesso");
+        return ResponseEntity.ok(new ApoliceDto(novaApolice));
     }
 
     @PutMapping("/{numero}")
@@ -62,7 +62,7 @@ public class ApoliceController {
         }
         Apolice apolice = Apolice.atualizar(numero, apoliceForm, apoliceRepository);
         apoliceRepository.save(apolice);
-        return ResponseEntity.status(HttpStatus.OK).body("Apólice atualizada com sucesso.");
+        return ResponseEntity.ok(new ApoliceDto(apolice));
     }
 
     @DeleteMapping("/{numero}")
