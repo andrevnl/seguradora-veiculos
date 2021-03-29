@@ -29,7 +29,7 @@ public class ConsultarApoliceDto {
         LocalDate hoje = LocalDate.now();
         LocalDate fimVigencia = apolice.getFimVigencia().toLocalDate();
         Integer dias = Period.between(hoje, fimVigencia).getDays();
-        if(dias > 0)
+        if(dias >= 0)
             return "Vence em " + dias + " dia(s)";
         else
             return "Venceu há " + Math.abs(dias) + " dia(s)";

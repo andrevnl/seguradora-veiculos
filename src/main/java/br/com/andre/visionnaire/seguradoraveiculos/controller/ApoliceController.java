@@ -71,7 +71,7 @@ public class ApoliceController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Número da apólice não encontrado");
         }
         apoliceRepository.deleteById(numero);
-        return ResponseEntity.status(HttpStatus.OK).body("Cliente removido com sucesso.");
+        return ResponseEntity.status(HttpStatus.OK).body("Apólice removida com sucesso.");
     }
 
     private boolean isApoliceExiste(String numero) {
